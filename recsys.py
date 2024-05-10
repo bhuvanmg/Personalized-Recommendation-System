@@ -126,9 +126,10 @@ def process_message():
     template = """
     [INST] <<SYS>>
     You are acting as a recommendation sytem.
+    User preferences are as follows:
     The user likes the following movies,songs and books: {likes}
-    and the user dislikes the following movies,songs and books: {dislikes}
-    Using the above information, recommend the user movies/songs/books as specified in the query. output only names seperated with commas. the recommendations should not include the users preferences.<</SYS>>
+    and the user dislikes the following movies,songs and books: {dislikes}.
+    Using this information, recommend the user movies or songs or books as specified in the query. output only the names of the recommendations seperated with commas. The recommendations should not include the ones mentioned in the users preferences.<</SYS>>
     
     {question}[/INST]
     """
