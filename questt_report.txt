@@ -77,7 +77,7 @@ Uses cosine similarity to return users with higher scores. Higher scores emphasi
 IMPROVEMENTS : 
 
 
-   * Using OpenAI api key for accurate and faster responses.
+   * Using OpenAI for answering prompts. OpenAI provides more powerful models. or use of larger language models for better recommendations. Prompts can also be modified as per needs and requirements to optimize the  responses.
    * Obtain additional data regarding movies,songs or books like plot,lyrics,genre,synopsis, etc to generate embeddings for personality analysis. This can give better results but may be computationally expensive.
 
 
