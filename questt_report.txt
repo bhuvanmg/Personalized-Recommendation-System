@@ -23,7 +23,6 @@ SYSTEM DESIGN:
 
 FUNCTIONAL FLOW: 
 
-
 * When a new user registers, users collection in the database is updated with user_id, password and preferences.
 * When a user is logging in, the user_id and password are matched to find the user and user_id is saved in the session.
 * User is redirected to the chat interface.
@@ -33,7 +32,6 @@ FUNCTIONAL FLOW:
 
 
 FUNCTIONS:
-
 
 1. process_message() : used to process messages given to the chat bot.
 It can be one of three types: edit preferences, find matches or user queries for recommendations.
@@ -58,12 +56,6 @@ When a user updates his/her preferences, a vector embedding is created using the
 
 When a user wants to find similar users, the matchuser function performs a vector search and returns top 3 users most similar to the current user.
 
-
-
-
-
-
-
 MongoDB Search Index: 
 {
   "mappings": {
@@ -82,20 +74,11 @@ MongoDB Search Index:
 Uses cosine similarity to return users with higher scores. Higher scores emphasize that the embedding vectors are closer or similar to each other.
 
 
-
-
 IMPROVEMENTS : 
 
 
    * Using OpenAI api key for accurate and faster responses.
    * Obtain additional data regarding movies,songs or books like plot,lyrics,genre,synopsis, etc to generate embeddings for personality analysis. This can give better results but may be computationally expensive.
-
-
-
-
-
-
-
 
 
 
