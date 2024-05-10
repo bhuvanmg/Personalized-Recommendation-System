@@ -2,7 +2,7 @@
 
 1. INSTALL NECESSARY PYTHON REQUIREMENTS USING PIP 
 
-    -  pip install Flask pymongo langchain-community huggingface-hub requests
+    -  pip install Flask pymongo langchain langchain-community huggingface-hub requests
 
 2. DOWNLOAD OPEN SOURCE LLM MODEL - "llama-2-7b-chat.Q4_0.gguf" INTO THE MODELS FOLDER.
 
