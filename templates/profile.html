@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+
+        .checkbox-group {
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item {
+            margin-right: 10px;
+        }
+
+        .preferences-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .preference-item {
+            margin-bottom: 5px;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">             
+        <h1 class="text-center mb-4">User Preferences</h1>
+        <div class="card">
+            <h2 class="text-center mb-3">Books:</h2>
+            <h3 class="text-center mb-3">likes:</h3>
+            <ul class="preferences-list">
+                {% for book in user.books.likes %}
+                <li class="preference-item">{{ book }}</li>
+                {% endfor %}
+            </ul>
+            <h3 class="text-center mb-3">dislikes:</h3>
+            <ul class="preferences-list">
+                {% for book in user.books.dislikes %}
+                <li class="preference-item">{{ book }}</li>
+                {% endfor %}
+            </ul>
+            <h2 class="text-center mb-3">Songs:</h2>
+            <h3 class="text-center mb-3">likes:</h3>
+            <ul class="preferences-list">
+                {% for song in user.songs.likes %}
+                <li class="preference-item">{{ song }}</li>
+                {% endfor %}
+            </ul>
+            <h3 class="text-center mb-3">dislikes:</h3>
+            <ul class="preferences-list">
+                {% for song in user.songs.dislikes %}
+                <li class="preference-item">{{ song }}</li>
+                {% endfor %}
+            </ul>
+            <h2 class="text-center mb-3">Movies:</h2>
+            <h3 class="text-center mb-3">likes:</h3>
+            <ul class="preferences-list">
+                {% for movie in user.movies.likes %}
+                <li class="preference-item">{{ movie }}</li>
+                {% endfor %}
+            </ul>
+            <h3 class="text-center mb-3">dislikes:</h3>
+            <ul class="preferences-list">
+                {% for movie in user.movies.dislikes %}
+                <li class="preference-item">{{ movie }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form action="{{ url_for('chat') }}" method="get">
+            <input type="hidden" name="user_id" value="{{ user.user_id }}">
+            <button type="submit">Chat</button>
+        </form>
+    </div>
+</body>
+</html>
