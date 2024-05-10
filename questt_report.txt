@@ -1,0 +1,102 @@
+﻿PERSONALIZED RECOMMENDATION SYSTEM
+
+
+ASSUMPTIONS : The chat interface is used only for updating preferences, finding recommendations for movies,songs and books and to match with similar users.
+
+
+SYSTEM DESIGN: 
+
+
+1. Frontend Interface: HTML,CSS
+* Index.html - Login page
+* register.html - New users can register.
+* profile.html - Displays users preferences - likes and dislikes in all categories.
+* chat.html - Chat interface for users to interact with the system.
+
+
+2. Backend: 
+* Flask web server - handles requests and responses.
+* MongoDB: database to store user data.
+* Hugging Face API: used to generate text embeddings.
+* LlamaCpp - Used to generate responses based on user questions.
+
+
+FUNCTIONAL FLOW: 
+
+
+* When a new user registers, users collection in the database is updated with user_id, password and preferences.
+* When a user is logging in, the user_id and password are matched to find the user and user_id is saved in the session.
+* User is redirected to the chat interface.
+* Users can add preferences by typing ‘preferences’ in the chat and follow the instructions of the chatbot.
+* Users can find users with similar preferences by typing ‘match’ in the chat.
+* If the user has other queries like recommendations, the user can enter it in the chat. 
+
+
+FUNCTIONS:
+
+
+1. process_message() : used to process messages given to the chat bot.
+It can be one of three types: edit preferences, find matches or user queries for recommendations.
+
+
+   * For query processing - using Retriever-Generator Architecture (RAG).
+Using “llama-2-7b-chat.Q4_0.gguf” model from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/tree/main
+which is an open source llm(large language model).
+
+
+Alternative: using OpenAI api key which is charged based on resource consumption. OpenAI model uses a more powerful model giving better results and faster than open source models.
+
+
+Algorithm:  When a user enters a query or prompt, users preferences are retrieved from the database. Users prompts are sent along with user preference details and a System prompt to generate appropriate responses. This is done using the langchain framework by defining Prompt Templates and passing the user’s likes and dislikes as context.
+                
+   * For finding matches - used vector embeddings and cosine similarity.
+
+
+Algorithm:
+When a user updates his/her preferences, a vector embedding is created using the HuggingFace api.This Functionality requires a Hugging Face access token. After posting the preferences, we get the vector embedding as a response. This is updated in the users collection by adding or updating the preferences_embedding field.
+
+
+When a user wants to find similar users, the matchuser function performs a vector search and returns top 3 users most similar to the current user.
+
+
+
+
+
+
+
+MongoDB Search Index: 
+{
+  "mappings": {
+    "dynamic": true,
+    "fields": {
+      "preferences_embedding": {
+        "dimensions": 384,
+        "similarity": "cosine",
+        "type": "knnVector"
+      }
+    }
+  }
+}
+
+
+Uses cosine similarity to return users with higher scores. Higher scores emphasize that the embedding vectors are closer or similar to each other.
+
+
+
+
+IMPROVEMENTS : 
+
+
+   * Using OpenAI api key for accurate and faster responses.
+   * Obtain additional data regarding movies,songs or books like plot,lyrics,genre,synopsis, etc to generate embeddings for personality analysis. This can give better results but may be computationally expensive.
+
+
+
+
+
+
+
+
+
+
+NAME : BHUVAN M G
