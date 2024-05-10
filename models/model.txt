@@ -1,0 +1,6 @@
+File to be pasted : 
+
+"llama-2-7b-chat.Q4_0.gguf" from the below url
+
+https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/tree/main
+
